@@ -50,4 +50,4 @@ node floorLightAndWindowSubscriber.js
 
 ## Handling Disconnected Clients
 
-Each client sets a Last Will and Testament (LWT) message when it connects to the MQTT broker. This message is stored by the broker and sent out to all subscribers of the client's status topic if the client disconnects unexpectedly. This allows other clients to know when a client has disconnected and take appropriate action.
+Each client sets a Last Will and Testament (LWT) message when it connects to the MQTT broker. This message is stored by the broker and sent out to all subscribers of the client's status topic if the client disconnects unexpectedly. This allows the subscribers to know when a client has disconnected and take appropriate action.
