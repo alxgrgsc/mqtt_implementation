@@ -22,7 +22,16 @@ client.on('connect', function () {
     console.log(`Sending temperature: ${temperature} C`);
     console.log(`Sending humidity: ${humidity}%`);
     //publish the values to the broker
-    client.publish('floor/room/temperature/hdsdev', `Temperature: ${temperature} C`);
-    client.publish('floor/room/humidity/hdsdev', `Humidity: ${humidity}%`);
+    client.publish('floor/room/temperature/lex', `Temperature: ${temperature} C`);
+    client.publish('floor/room/humidity/lex', `Humidity: ${humidity}%`);
   }, 1000);
+
+//catch the SIGINT event
+process.on('SIGINT', () => {
+  console.log('Publisher is disconnecting');
+  client.publish('roomPublisher/status', 'Room Publisher has disconnected', () => {
+    client.end();
+    process.exit();
+  });
+});
 });

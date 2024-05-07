@@ -1,20 +1,15 @@
 //mqtt module
 const mqtt = require('mqtt');
-//will message to be sent when the client disconnects
-const options = {
-  will: {
-    topic: 'roomTemperatureSubscriber/status',
-    payload: 'Room Temperature Subscriber has disconnected',
-    qos: 1,
-    retain: false
-  }
-};
+
 //connect to the broker
-const client = mqtt.connect('mqtt://broker.hivemq.com', options);
+const client = mqtt.connect('mqtt://broker.hivemq.com');
 
 //subscribe to a more specific temperature topic
 client.on('connect', function () {
-  client.subscribe('floor/room/temperature/hdsdev', function (err) {
+  client.subscribe('floor/room/temperature/lex', function (err) {
+    if (err) console.error(err);
+  });
+  client.subscribe('roomPublisher/status', function (err) {
     if (err) console.error(err);
   });
 });
