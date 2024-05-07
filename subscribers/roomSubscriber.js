@@ -4,12 +4,11 @@ const mqtt = require('mqtt');
 //connect to the broker
 const client = mqtt.connect('mqtt://broker.hivemq.com');
 
-//subscribe to the room topic
+//subscribe to the room topic plus the status topic for the roomPublisher
 client.on('connect', function () {
   client.subscribe('lex/floor/room/#', function (err) {
     if (err) console.error(err);
   });
-  //subscribe to the status topic for the roomPublisher
   client.subscribe('lex/roomPublisher/status', function (err) {
     if (err) console.error(err);
   });
