@@ -3,7 +3,7 @@ const mqtt = require('mqtt');
 //will message to be sent when the client disconnects
 const options = {
   will: {
-    topic: 'roomPublisher/status',
+    topic: 'lex/roomPublisher/status',
     payload: 'Room Publisher has disconnected',
     qos: 1,
     retain: false
@@ -22,8 +22,8 @@ client.on('connect', function () {
     console.log(`Sending temperature: ${temperature} C`);
     console.log(`Sending humidity: ${humidity}%`);
     //publish the values to the broker
-    client.publish('floor/room/temperature/lex', `Temperature: ${temperature} C`);
-    client.publish('floor/room/humidity/lex', `Humidity: ${humidity}%`);
+    client.publish('lex/floor/room/temperature', `Temperature: ${temperature} C`);
+    client.publish('lex/floor/room/humidity', `Humidity: ${humidity}%`);
   }, 1000);
 
 //catch the SIGINT event

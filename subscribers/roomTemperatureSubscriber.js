@@ -6,10 +6,10 @@ const client = mqtt.connect('mqtt://broker.hivemq.com');
 
 //subscribe to a more specific temperature topic
 client.on('connect', function () {
-  client.subscribe('floor/room/temperature/lex', function (err) {
+  client.subscribe('lex/floor/room/temperature', function (err) {
     if (err) console.error(err);
   });
-  client.subscribe('roomPublisher/status', function (err) {
+  client.subscribe('lex/roomPublisher/status', function (err) {
     if (err) console.error(err);
   });
 });
