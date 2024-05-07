@@ -1,5 +1,6 @@
 //import modules
 const mqtt = require('mqtt');
+//will message to be sent when the client disconnects
 const options = {
   will: {
     topic: 'roomPublisher/status',
