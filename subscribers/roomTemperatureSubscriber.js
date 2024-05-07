@@ -12,14 +12,17 @@ const options = {
 //connect to the broker
 const client = mqtt.connect('mqtt://broker.hivemq.com', options);
 
-//subscribe to the temperature topic
+//subscribe to a more specific temperature topic
 client.on('connect', function () {
-  client.subscribe('floor/room/temperature', function (err) {
+  client.subscribe('floor/room/temperature/hdsdev', function (err) {
     if (err) console.error(err);
   });
 });
 
-//log the received message
 client.on('message', function (topic, message) {
-  console.log(`Received message on ${topic}: ${message.toString()}`);
+  console.log(`Received message on ${topic}:`) 
+  console.log(`${message.toString()}`);
+  //blank line
+  console.log();
 });
+
