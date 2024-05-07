@@ -25,13 +25,4 @@ client.on('connect', function () {
     client.publish('lex/floor/room/temperature', `Temperature: ${temperature} C`);
     client.publish('lex/floor/room/humidity', `Humidity: ${humidity}%`);
   }, 1000);
-
-//catch the SIGINT event
-process.on('SIGINT', () => {
-  console.log('Publisher is disconnecting');
-  client.publish('roomPublisher/status', 'Room Publisher has disconnected', () => {
-    client.end();
-    process.exit();
-  });
-});
 });
