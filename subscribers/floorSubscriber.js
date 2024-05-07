@@ -19,9 +19,22 @@ client.on('connect', function () {
 
 //display the received messages
 client.on('message', function (topic, message) {
-  console.log(`Received message on ${topic}:`) 
-  console.log(`${message.toString()}`);
-  //blank line
-  console.log();
+  const messageStr = message.toString();
+  if (topic.includes('light')) {
+    console.log(`Received message on ${topic}:`)
+    console.log(`Light Status: ${messageStr === 'ON' ? 'On' : 'Off'}`);
+    //blank line
+    console.log();
+  } else if (topic.includes('window')) {
+    console.log(`Received message on ${topic}:`) 
+    console.log(`Window Status: ${messageStr === 'OPEN' ? 'Open' : 'Closed'}`);
+    //blank line
+    console.log();
+  } else {
+    console.log(`Received message on ${topic}:`) 
+    console.log(`${messageStr}`);
+    //blank line
+    console.log();
+  }
 });
 
